@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.io.File;
 
 //class that will look in a specified folder and change the name of all files in it
+//IT WILL NOT RENAME A FILE IF THEY ALL HAVE SAME NAME
 public class NameChanger {
 	
 	public int fileLocation (String changeToName, String fileFormat, String fileDirectory) {
@@ -34,20 +35,22 @@ public class NameChanger {
 							if ((episodeFinder[i] == 'e' || episodeFinder[i] == 'E') && episodeFinder[i + 1] == '0') {
 								episodeNum = episodeFinder[i + 2];
 								sb.append(episodeNum);
-								break;
+								//break;
 							}
 							
 							//handles double digits
-							if ((episodeFinder[i] == 'e' || episodeFinder[i] == 'E') && episodeFinder[i + 1] == '1') {
+							if ((episodeFinder[i] == 'e' || episodeFinder[i] == 'E') && (episodeFinder[i + 1] == '1' || episodeFinder[i + 1] == '2')) {
 								doubleDigit = true;
 								String doubleDigitEpisode = "";
 								Character tmp = episodeFinder[i + 1];
 								Character tmp2 = episodeFinder[i + 2];
 								doubleDigitEpisode = doubleDigitEpisode.concat(tmp.toString()).concat(tmp2.toString());
 								sb.append(doubleDigitEpisode);
-								break;
+								//break;
 								
 							}
+							
+							
 						}//end episode finder for
 						
 						//this is what actually renames the file
@@ -74,6 +77,6 @@ public class NameChanger {
 		}
 		return totalFilesRenamed;
 	}//end fileLocation method
-	
+
 	
 }//end class NameChanger
