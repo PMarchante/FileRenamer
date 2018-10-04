@@ -9,7 +9,7 @@ import java.util.Scanner;
 //class that will look in a specified folder and change the name of all files in it
 public class NameChanger {
 	
-	public void fileLocation(String changeToName, String fileFormat, String fileDirectory){
+	public void fileLocation (String changeToName, String fileFormat, String fileDirectory) {
 		
 		
 		
@@ -56,7 +56,7 @@ public class NameChanger {
 						}
 					}//end episode finder for
 					
-				
+					
 					
 					
 					//this is what actually renames the file
@@ -73,12 +73,11 @@ public class NameChanger {
 			}//end for
 			
 		}//end try
-		catch (java.lang.ArrayIndexOutOfBoundsException i){
+		catch (java.lang.ArrayIndexOutOfBoundsException i) {
 			JOptionPane.showMessageDialog(null, "Make sure the episode format is Exx, 2 digit episode numbers", "Alert",
 					JOptionPane.ERROR_MESSAGE);
 		}
 	}//end fileLocation
-	
 	
 	
 }//end class NameChanger
