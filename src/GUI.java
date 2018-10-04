@@ -10,6 +10,7 @@ public class GUI{
 	private JTextField renameTo;
 	private JComboBox<String> format;
 	private JButton directory;
+	private JLabel newNameLabel;
 	
 	public String getFolderDirectory () {
 		
@@ -32,10 +33,14 @@ public class GUI{
 				@Override
 				public void actionPerformed (ActionEvent e) {
 					
-					NameChanger test = new NameChanger();
 					
-					test.fileLocation(renameTo.getText(), (String)format.getSelectedItem(),getFolderDirectory() );
-					
+					if (!renameTo.getText().isEmpty()) {
+						NameChanger test = new NameChanger();
+						test.fileLocation(renameTo.getText(), (String) format.getSelectedItem(), getFolderDirectory());
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Enter what you want to rename the file to", "Error",JOptionPane.ERROR_MESSAGE);
+					}//end else
 				}
 			});
 		

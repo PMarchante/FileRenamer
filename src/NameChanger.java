@@ -29,8 +29,7 @@ public class NameChanger {
 					File myFile = new File(folderPath + "\\" + fileArray[x].getName());
 					
 					String editedName = fileArray[x].getName();
-				
-				
+					
 					editedName = editedName.replaceAll("[^sSeE0-9]", "");
 					
 					//System.out.println("the edited name " + editedName);
@@ -57,7 +56,7 @@ public class NameChanger {
 						}
 					}//end episode finder for
 					
-					
+				
 					
 					
 					//this is what actually renames the file
