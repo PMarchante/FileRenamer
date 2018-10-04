@@ -28,16 +28,27 @@ public class GUI {
 		format.setSelectedIndex(0);
 		
 		clickMeButton.addActionListener(e ->{
+			int x = 0;
+			boolean complete = false;
 			if (! renameTo.getText().isEmpty()) {
 				NameChanger test = new NameChanger();
-				test.fileLocation(renameTo.getText(), (String) format.getSelectedItem(), getFolderDirectory());
+				x =test.fileLocation(renameTo.getText(), (String) format.getSelectedItem(), getFolderDirectory());
+				
+				if (x>0)
+				complete = true;
 			}
 			else {
 				JOptionPane.showMessageDialog(null, "Enter what you want to rename the file to", "Error", JOptionPane.ERROR_MESSAGE);
 			}//end else
 			
+			//this will only display if all the files were renamed
+			if (complete) {
+				JOptionPane.showMessageDialog(null, "renamed " + x + " files", "Complete", JOptionPane.INFORMATION_MESSAGE);
+				
+			}
 		} );
 		
+		//this action listener will get the file directory
 		directory.addActionListener( e -> {
 			JFileChooser chooser = new JFileChooser();
 			chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
