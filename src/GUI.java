@@ -10,6 +10,7 @@ public class GUI {
 	private JComboBox<String> format;
 	private JButton directory;
 	private JLabel newNameLabel;
+	private JCheckBox inOrder;
 	
 	private String getFolderDirectory () {
 		
@@ -28,15 +29,34 @@ public class GUI {
 		format.setSelectedIndex(0);
 		
 		clickMeButton.addActionListener(e ->{
-			int x = 0;
+			int x=0;
 			boolean complete = false;
-			if (! renameTo.getText().isEmpty()) {
-				NameChanger test = new NameChanger();
-				x =test.fileLocation(renameTo.getText(), (String) format.getSelectedItem(), getFolderDirectory());
-				
-				if (x>0)
-				complete = true;
+			//if the inorder button is not selected
+			if (!inOrder.isSelected()) {
+				x = 0;
+				complete = false;
+				if (! renameTo.getText().isEmpty()) {
+					NameChanger test = new NameChanger();
+					x = test.fileLocation(renameTo.getText(), (String) format.getSelectedItem(), getFolderDirectory());
+					
+					if (x > 0)
+						complete = true;
+				}
 			}
+			
+			if (inOrder.isSelected()){
+				x = 0;
+				complete = false;
+				
+				if (! renameTo.getText().isEmpty()) {
+					NameChanger test = new NameChanger();
+					x = test.inOrderRename(renameTo.getText(), (String) format.getSelectedItem(), getFolderDirectory());
+					
+					if (x > 0)
+						complete = true;
+				}
+				
+			}//end inorder button selected
 			else {
 				JOptionPane.showMessageDialog(null, "Enter what you want to rename the file to", "Error", JOptionPane.ERROR_MESSAGE);
 			}//end else

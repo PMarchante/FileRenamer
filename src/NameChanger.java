@@ -77,6 +77,36 @@ public class NameChanger {
 		}
 		return totalFilesRenamed;
 	}//end fileLocation method
-
+	
+	public int inOrderRename(String changeToName, String fileFormat, String fileDirectory){
+		int totalFilesRenamed =0;
+		
+		String folderPath = fileDirectory;
+		File myFolder = new File(folderPath);
+		
+		File[] fileArray = myFolder.listFiles();
+		
+		try{
+			if(fileArray!=null){
+				
+				for (int x=0 ; x<fileArray.length ; x++){
+					if (fileArray[x].isFile()){
+						File myFile = new File(folderPath + "\\" + fileArray[x].getName());
+						
+						if (myFile.renameTo(new File(folderPath + "\\" + changeToName +" E "+ (x+1) + fileFormat))){
+							totalFilesRenamed++;
+						}
+						
+					}//end if that makes sure what we are looking at is a file
+				}//end for
+			}//end if file array is not null
+		}//end try
+		
+		catch (java.lang.ArrayIndexOutOfBoundsException i) {
+			JOptionPane.showMessageDialog(null, "Make sure the episode format is Exx, 2 digit episode numbers", "Alert",
+					JOptionPane.ERROR_MESSAGE);
+		}
+		return totalFilesRenamed;
+	}//end inOrderRename
 	
 }//end class NameChanger
